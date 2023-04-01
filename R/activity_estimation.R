@@ -42,7 +42,6 @@ setMethod("neuronActivity", "matrix", function(x,
     act_mat <- runAUCell(exp_mat = exp_mat,
                          gene_list = gene_list,
                          normalization = normalization,
-                         ncores = ncores,
                          verbose = verbose, ...)
   }else if(method == "viper"){
     act_mat <- runViper(exp_mat = exp_mat,
@@ -122,7 +121,6 @@ runViper <- function(exp_mat,
 #'
 #' @param exp_mat An expression matrix
 #' @param gene_list A list of regulons.
-#' @param ncores Number of cores used.
 #' @param ... Other parameters passed to \code{\link{AUCell_buildRankings}} and
 #' \code{\link{AUCell_calcAUC}}
 #' @param normalization
