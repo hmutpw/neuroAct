@@ -132,7 +132,6 @@ runViper <- function(exp_mat,
 #'
 runAUCell <- function(exp_mat,
                       gene_list,
-                      ncores = 1,
                       normalization = TRUE,
                       verbose = interactive(),
                       ... ){
@@ -147,16 +146,14 @@ runAUCell <- function(exp_mat,
     x
   })
   cells_rankings <- AUCell::AUCell_buildRankings(exprMat = exp_mat,
-                                                 nCores=ncores,
                                                  plotStats=FALSE,
                                                  verbose = verbose,
                                                  ...)
   cells_AUC <- AUCell::AUCell_calcAUC(geneSets = gene_list,
                                       rankings = cells_rankings,
-                                      nCores = 1,
                                       normAUC = normalization,
                                       verbose = verbose, ...)
-  assay(cells_AUC)
+  cells_AUC@assays@data$AUC
 }
 
 ######
